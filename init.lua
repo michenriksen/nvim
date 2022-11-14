@@ -246,7 +246,7 @@ local config = {
         end,
       },
       { "gpanders/editorconfig.nvim" },
-      { "github/copilot.vim" },
+      -- { "github/copilot.vim" },
       {
           "nvim-neotest/neotest",
           requires = {
