@@ -41,7 +41,9 @@ local config = {
       spell = true, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
       wrap = false, -- sets vim.opt.wrap
-      colorcolumn = "80,120"
+      colorcolumn = "80,120",
+      swapfile = false, -- don't use swap file
+      shell = "zsh", -- shell to use for !, :!, system(), etc.j
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -210,7 +212,11 @@ local config = {
       ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run file tests" },
       ["<leader>To"] = { "<cmd>lua require('neotest').summary.open()<cr>", desc = "Open test summary" },
 
-      ["f"] = { "<cmd>HopWord<cr>", desc = "Hop words"},
+      ["f"] = { "<cmd>HopWord<cr>", desc = "Hop words" },
+
+      ["<cr>"] = { "<cmd>nohl<cr>", desc = "Clear search highlighting" },
+
+      ["<leader>ec"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua", desc = "Open init.lua configuration" },
 
       ["<leader>uD"] = { "<cmd>colorscheme tokyonight<cr>", desc = "Enable dark colorscheme" },
       ["<leader>uL"] = { "<cmd>colorscheme tokyonight-day<cr>", desc = "Enable light colorscheme" },
