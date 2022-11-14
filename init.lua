@@ -226,6 +226,13 @@ local config = {
   -- Configure plugins
   plugins = {
     init = {
+      -- Disable LuaSnip to get rid of a bug where pressing <Tab> in insert
+      -- mode would sometimes cause the cursor to jump to a seemingly random
+      -- place in the file.
+      -- https://github.com/AstroNvim/AstroNvim/issues/782
+      ["L3MON4D3/LuaSnip"] = { disable = true },
+      ["saadparwaiz1/cmp_luasnip"] = { disable = true },
+
       {
         "folke/tokyonight.nvim",
         config = function()
