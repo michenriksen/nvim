@@ -216,7 +216,7 @@ local config = {
 
       ["<cr>"] = { "<cmd>nohl<cr>", desc = "Clear search highlighting" },
 
-      ["<leader>ec"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua", desc = "Open init.lua configuration" },
+      ["<leader>ec"] = { "<cmd>e ~/.config/nvim/lua/user/init.lua<cr>", desc = "Open init.lua configuration" },
 
       ["<leader>uD"] = { "<cmd>colorscheme tokyonight<cr>", desc = "Enable dark colorscheme" },
       ["<leader>uL"] = { "<cmd>colorscheme tokyonight-day<cr>", desc = "Enable light colorscheme" },
@@ -231,6 +231,29 @@ local config = {
 
   -- Configure plugins
   plugins = {
+    cmp = function(config)
+      local cmp = require "cmp"
+      local luasnip = require "luasnip"
+      config.mapping["<Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.expandable() then
+          luasnip.expand()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { "i", "s" })
+      config.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" })
+
+      return config
+    end,
+
     init = {
       {
         "folke/tokyonight.nvim",
