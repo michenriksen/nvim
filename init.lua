@@ -231,28 +231,28 @@ local config = {
 
   -- Configure plugins
   plugins = {
-    cmp = function(config)
-      local cmp = require "cmp"
-      local luasnip = require "luasnip"
-      config.mapping["<Tab>"] = cmp.mapping(function(fallback)
-        if luasnip.expandable() then
-          luasnip.expand()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        else
-          fallback()
-        end
-      end, { "i", "s" })
-      config.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { "i", "s" })
-
-      return config
-    end,
+    -- cmp = function(config)
+    --   local cmp = require "cmp"
+    --   local luasnip = require "luasnip"
+    --   config.mapping["<Tab>"] = cmp.mapping(function(fallback)
+    --     if luasnip.expandable() then
+    --       luasnip.expand()
+    --     elseif luasnip.expand_or_jumpable() then
+    --       luasnip.expand_or_jump()
+    --     else
+    --       fallback()
+    --     end
+    --   end, { "i", "s" })
+    --   config.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+    --     if luasnip.jumpable(-1) then
+    --       luasnip.jump(-1)
+    --     else
+    --       fallback()
+    --     end
+    --   end, { "i", "s" })
+    --
+    --   return config
+    -- end,
 
     init = {
       {
@@ -339,10 +339,10 @@ local config = {
           null_ls.builtins.formatting.goimports.with({
               extra_args = { "-local", pkg },
           }),
+          null_ls.builtins.formatting.prettier,
           gci.with({
             extra_args = { "--section", "standard,default,prefix(" .. pkg .. "),blank,dot", "--custom-order" },
           }),
-          null_ls.builtins.formatting.eslint_d,
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.shellcheck,
       }
