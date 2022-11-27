@@ -376,6 +376,13 @@ local config = {
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
     },
+    telescope = {
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = { "node_modules", "vendor" },
+        },
+      })
+    },
   },
 
   -- LuaSnip Options
