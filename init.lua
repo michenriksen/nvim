@@ -44,6 +44,7 @@ local config = {
       colorcolumn = "80,120",
       swapfile = false, -- don't use swap file
       shell = "zsh", -- shell to use for !, :!, system(), etc.j
+      clipboard = "",
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -163,7 +164,7 @@ local config = {
         ["<leader>lD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Go to declaration" },
         ["<leader>lI"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Go to implementation" },
         ["<leader>lt"] = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to type definition" },
-        ["<leader>lR"] = { "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Find references" },
+        ["<leader>lr"] = { "<cmd>Glance references<cr>", desc = "Find references (Glance)" },
         ["<leader>lh"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Show current symbol documentation" },
       },
     },
@@ -320,7 +321,23 @@ local config = {
                 },
             })
           end
-      }
+      },
+      {
+        "dnlhc/glance.nvim",
+        config = function()
+          require("glance").setup()
+        end,
+      },
+      --   config = function()
+      --    require("glance").setup({
+      --      hooks = {
+      --        before_open = function(results, open, jump, method)
+      --         open(results)
+      --        end,
+      --      },
+      --    })
+      --   end
+      -- }
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
